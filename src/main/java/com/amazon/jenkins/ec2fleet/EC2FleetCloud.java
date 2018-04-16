@@ -417,7 +417,10 @@ public class EC2FleetCloud extends Cloud
 
     private static AmazonEC2 connect(final String credentialsId, final String region) {
 
+        LOGGER.log(Level.INFO, "Connect with credentialsId: \"" + credentialsId + "\" and region \"" + region + "\"");
         final AmazonWebServicesCredentials credentials = AWSCredentialsHelper.getCredentials(credentialsId, Jenkins.getInstance());
+        LOGGER.log(Level.INFO, "Credentials: " + credentials.getCredentials().getAWSAccessKeyId() + " " + credentials.getCredentials()
+            .getAWSSecretKey());
         final AmazonEC2Client client =
                 credentials != null ?
                         new AmazonEC2Client(credentials) :
